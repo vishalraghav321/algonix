@@ -1,12 +1,13 @@
 import passport from 'passport';
-import { Strategy as GoogleStartegy } from 'passport-google-oauth20';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { db } from '../libs/db.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET){
 passport.use(
-  new GoogleStartegy(
+  new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -41,7 +42,7 @@ passport.use(
     },
   ),
 );
-
+}
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
