@@ -17,6 +17,8 @@ import {
 } from '../utils/generateTokens.js';
 import { uploadRandomAvatar } from '../utils/avatarUtils.js';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const register = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -71,18 +73,16 @@ const register = async (req, res) => {
 
     const AccessCookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 15, // 15 minutes
-      domain: '.algonix.in',
+      sameSite: isProduction ? 'none' : 'lax',
+      secure: isProduction,
+      maxAge: 1000 * 60 * 15,
     };
 
     const RefreshCookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      domain: '.algonix.in',
+      sameSite: isProduction ? 'none' : 'lax',
+      secure: isProduction,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     };
 
     res.cookie('accessToken', accessToken, AccessCookieOptions);
@@ -228,18 +228,16 @@ const login = async (req, res) => {
 
     const AccessCookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 15, // 15 minutes
-      domain: '.algonix.in',
+      sameSite: isProduction ? 'none' : 'lax',
+      secure: isProduction,
+      maxAge: 1000 * 60 * 15,
     };
 
     const RefreshCookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      domain: '.algonix.in',
+      sameSite: isProduction ? 'none' : 'lax',
+      secure: isProduction,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     };
 
     res.cookie('accessToken', accessToken, AccessCookieOptions);
@@ -313,7 +311,7 @@ const googleLogin = async (req, res) => {
     res.cookie('accessToken', accessToken, AccessCookieOptions);
     res.cookie('refreshToken', refreshToken, RefreshCookieOptions);
 
-    res.redirect(`${process.env.FONTEND_URL}/problems`);
+    res.redirect(`${process.env.FRONTEND_URL}/problems`);
   } catch (error) {
     console.error(error);
     return res
@@ -366,18 +364,16 @@ const TokenRefresh = async (req, res) => {
 
     const AccessCookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 15, // 15 minutes
-      domain: '.algonix.in',
+      sameSite: isProduction ? 'none' : 'lax',
+      secure: isProduction,
+      maxAge: 1000 * 60 * 15,
     };
 
     const RefreshCookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      domain: '.algonix.in',
+      sameSite: isProduction ? 'none' : 'lax',
+      secure: isProduction,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     };
 
     res.cookie('accessToken', newAccessToken, AccessCookieOptions);
