@@ -10,9 +10,18 @@ export const getJudge0LanguageId = (Language) => {
   return LanguageMap[Language.toUpperCase()];
 };
 
+const judge0 = axios.create({
+  baseURL: process.env.JUDGE0_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    'x-rapidapi-key': process.env.RAPIDAPI_KEY,
+    'x-rapidapi-host': process.env.RAPIDAPI_HOST,
+  },
+});
+
 export const submitBatch = async (submissions) => {
-  const { data } = await axios.post(
-    `${process.env.JUDGE0_API_URL}/submissions/batch?base64_encoded=false`,
+  const { data } = await judge0.post(
+    `/submissions/batch?base64_encoded=false`,
     { submissions },
   );
 
@@ -23,8 +32,8 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const pollBatchResults = async (tokens) => {
   while (true) {
-    const { data } = await axios.get(
-      `${process.env.JUDGE0_API_URL}/submissions/batch`,
+    const { data } = await judge0.get(
+      `/submissions/batch`,
       {
         params: {
           tokens: tokens.join(','),

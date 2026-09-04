@@ -250,7 +250,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\vt118\\OneDrive\\Pictures\\Leetcode-clone\\BACKEND\\src\\generated\\prisma",
+      "value": "D:\\algonix\\BACKEND\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -268,7 +268,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\vt118\\OneDrive\\Pictures\\Leetcode-clone\\BACKEND\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\algonix\\BACKEND\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
