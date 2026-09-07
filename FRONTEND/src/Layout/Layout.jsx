@@ -15,7 +15,7 @@ import AllPlaylistsPage from "../pages/PlaylistsPage.jsx";
 import PlaylistDetailpage from "../pages/PlaylistDetailpage.jsx";
 import Profile from "../pages/Profile.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
-import AdminRoute from "../componenets/AdminRoute.jsx";
+import AdminRoute from "../components/AdminRoute.jsx";
 
 import { useAuthStore } from "../store/useAuthStore.js";
 

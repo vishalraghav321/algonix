@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-import CreatePlaylistModal from "../componenets/CreatePlaylistModal.jsx";
+import CreatePlaylistModal from "../components/CreatePlaylistModal.jsx";
 import { useAuthStore } from "../store/useAuthStore.js";
 
 import amazonIcon from "./assets/AmazonIcon.webp";

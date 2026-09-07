@@ -23,9 +23,9 @@ import { useProblemStore } from "../store/useProblemStore.js";
 import { useExecutionStore } from "../store/useExecutionStore.js";
 import { getLanguageId } from "../lib/lang.js";
 import { useSubmissionStore } from "../store/useSubmissionStore.js";
-import SubmissionResults from "../componenets/Submission.jsx";
-import SubmissionList from "../componenets/SubmissionList.jsx";
-import AddtoPlaylist from "../componenets/AddtoPlaylist.jsx";
+import SubmissionResults from "../components/Submission.jsx";
+import SubmissionList from "../components/SubmissionList.jsx";
+import AddtoPlaylist from "../components/AddtoPlaylist.jsx";
 
 const ProblemPage = () => {
   const { id } = useParams();

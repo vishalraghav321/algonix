@@ -401,18 +401,16 @@ const TokenRefresh = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    res.clearCookie('accessToken', {
+    const isProduction = process.env.NODE_ENV === "production";
+
+    const cookieOptions = {
       httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      domain: '.algonix.in',
-    });
-    res.clearCookie('refreshToken', {
-      httpOnly: true,
-      sameSite: 'none',
-      secure: true,
-      domain: '.algonix.in',
-    });
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction,
+    };
+
+    res.clearCookie("accessToken", cookieOptions);
+    res.clearCookie("refreshToken", cookieOptions);
 
     await db.user.update({
       where: {
@@ -424,7 +422,9 @@ const logout = async (req, res) => {
       },
     });
 
-    res.status(200).json(new ApiResponse(200, null, 'User logged out'));
+    res
+      .status(200)
+      .json(new ApiResponse(200, null, "User logged out successfully"));
   } catch (error) {
     console.error(error);
     return res.status(400).json(new ApiError(400, error.message));
