@@ -18,6 +18,8 @@ const createProblem = async (req, res) => {
     testcases,
     codeSnippet,
     refrenceSolution,
+    hints,
+    editorial,
   } = req.body;
 
   if (req.user.role !== 'ADMIN') {
@@ -78,6 +80,8 @@ const createProblem = async (req, res) => {
         testcases,
         codeSnippet,
         refrenceSolution,
+        hints,
+        editorial,
         userId: req.user.id,
       },
     });

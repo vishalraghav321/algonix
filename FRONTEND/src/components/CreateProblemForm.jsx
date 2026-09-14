@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm, useFieldArray, Controller, set } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
@@ -23,7 +23,11 @@ const problemSchema = z.object({
     .string()
     .min(10, "Description must be at least 10 characters long"),
   difficulty: z.enum(["EASY", "MEDIUM", "HARD"]),
-  tags: z.array(z.string().min(1, "ATleat 1 tag is required")),
+  tags: z.array(
+    z.object({
+      value: z.string().min(1, "At least 1 tag is required"),
+    })
+  ).min(1, "At least 1 tag is required"),
   constraints: z.string().min(1, "Contraints are required"),
   hints: z.string().optional(),
   editorial: z.string().optional(),
@@ -460,25 +464,27 @@ public class Main {
     rl.close();
   });`,
     PYTHON: `class Solution:
-      def isPalindrome(self, s: str) -> bool:
-          # Convert to lowercase and keep only alphanumeric characters
-          filtered_chars = [c.lower() for c in s if c.isalnum()]
-          
-          # Check if it's a palindrome
-          return filtered_chars == filtered_chars[::-1]
-  
-  # Input parsing
-  if __name__ == "__main__":
-      import sys
-      # Read the input string
-      s = sys.stdin.readline().strip()
-      
-      # Call solution
-      sol = Solution()
-      result = sol.isPalindrome(s)
-      
-      # Output result
-      print(str(result).lower())  # Convert True/False to lowercase true/false`,
+    def isPalindrome(self, s: str) -> bool:
+        # Convert to lowercase and keep only alphanumeric characters
+        filtered_chars = [c.lower() for c in s if c.isalnum()]
+
+        # Check if it's a palindrome
+        return filtered_chars == filtered_chars[::-1]
+
+
+# Input parsing
+if __name__ == "__main__":
+    import sys
+
+    # Read the input string
+    s = sys.stdin.readline().strip()
+
+    # Call solution
+    sol = Solution()
+    result = sol.isPalindrome(s)
+
+    # Output result
+    print(str(result).lower())`,
     JAVA: `import java.util.Scanner;
 
 public class Main {
@@ -524,7 +530,7 @@ const CreateProblemForm = () => {
     resolver: zodResolver(problemSchema),
     defaultValues: {
       testcases: [{ input: "", output: "" }],
-      tags: [""],
+      tags: [{ value: "" }],
       examples: {
         JAVASCRIPT: {
           input: "",
@@ -541,16 +547,16 @@ const CreateProblemForm = () => {
           output: "",
           explanation: "",
         },
-        codeSnippet: {
-          JAVASCRIPT: "function solution() {\n  // Write your code here\n}",
-          PYTHON: "def solution():\n    # Write your code here\n    pass",
-          JAVA: "public class Solution {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
-        },
-        refrenceSolution: {
-          JAVASCRIPT: "// Add your refrence solution here",
-          PYTON: "# Add your refrence solution here",
-          JAVA: "// Add your refrence solution here",
-        },
+      },
+      codeSnippet: {
+        JAVASCRIPT: "function solution() {\n  // Write your code here\n}",
+        PYTHON: "def solution():\n    # Write your code here\n    pass",
+        JAVA: "public class Solution {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      },
+      refrenceSolution: {
+        JAVASCRIPT: "// Add your refrence solution here",
+        PYTHON: "# Add your refrence solution here",
+        JAVA: "// Add your refrence solution here",
       },
     },
   });
@@ -559,7 +565,6 @@ const CreateProblemForm = () => {
     fields: testCaseFields,
     append: appendTestCase,
     remove: removeTestCase,
-    replace: replacetestcases,
   } = useFieldArray({
     control,
     name: "testcases",
@@ -569,7 +574,6 @@ const CreateProblemForm = () => {
     fields: tagFields,
     append: appendTag,
     remove: removeTag,
-    replace: replaceTags,
   } = useFieldArray({
     control,
     name: "tags",
@@ -580,15 +584,21 @@ const CreateProblemForm = () => {
   const onSubmit = async (value) => {
     try {
       setIsLoading(true);
+      const payload = {
+        ...value,
+        tags: value.tags.map((tag) => tag.value),
+      };
       const response = await axiosInstance.post(
         "/problems/create-problem",
-        value
+        payload
       );
       toast.success(response.data.message || "Problem created successfully");
       navigation("/");
     } catch (error) {
       console.error("Error while creating problem", error);
-      toast.error("Error in creating problem");
+      toast.error(
+        error.response?.data?.message || "Error in creating problem"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -597,10 +607,10 @@ const CreateProblemForm = () => {
   const loadSampleData = () => {
     const sampleData = sampleType === "DP" ? sampledpData : sampleStringProblem;
 
-    replaceTags(sampleData.tags.map((tag) => tag));
-    replacetestcases(sampleData.testcases.map((tc) => tc));
-
-    reset(sampleData);
+    reset({
+      ...sampleData,
+      tags: sampleData.tags.map((tag) => ({ value: tag })),
+    });
   };
 
   return (
@@ -620,7 +630,7 @@ const CreateProblemForm = () => {
                   className={`btn join-item ${
                     sampleType === "DP" ? "btn-active" : ""
                   }`}
-                  onClick={() => setSampleType("array")}
+                  onClick={() => setSampleType("DP")}
                 >
                   DP Problem
                 </button>
@@ -723,7 +733,7 @@ const CreateProblemForm = () => {
                 <button
                   type="button"
                   className="btn btn-primary btn-sm"
-                  onClick={() => appendTag("")}
+                  onClick={() => appendTag({ value: "" })}
                 >
                   <Plus className="w-4 h-4 mr-1" /> Add Tag
                 </button>
@@ -734,7 +744,7 @@ const CreateProblemForm = () => {
                     <input
                       type="text"
                       className="input input-bordered flex-1"
-                      {...register(`tags.${index}`)}
+                      {...register(`tags.${index}.value`)}
                       placeholder="Enter tag"
                     />
                     <button
