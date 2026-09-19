@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import MagicSVG from "../assets/magic.svg";
-import PeerlistSVG from "../assets/PeerlistSvg_light.svg";
 
 // Add these styles to your CSS file or include them here
 const gradientTextStyle = {
@@ -115,7 +114,7 @@ const Hero = () => {
         </button>
       </motion.div>
 
-      {/* Main content container with image and peerlist badge */}
+      {/* Main content container with image */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -128,34 +127,6 @@ const Hero = () => {
           alt="Magic effect"
           className="text-white w-52 sm:w-64 md:w-72 h-auto mb-6"
         />
-
-        {/* Peerlist Badge - positioned below the image */}
-        <Link to="">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-            className="relative group cursor-pointer"
-          >
-            <img
-              src={PeerlistSVG}
-              alt="Peerlist badge"
-              className="w-44 md:w-48 bg-black/80 backdrop-blur-sm p-3 rounded-xl border border-gray-600 hover:border-[#F4FF54] shadow-lg hover:shadow-[0_0_20px_rgba(244,255,84,0.3)] transition-all duration-300"
-            />
-
-            {/* Enhanced Tooltip */}
-            <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-              <div className="bg-gray-900 text-white text-sm font-medium py-2 px-4 rounded-lg shadow-xl border border-gray-700 whitespace-nowrap">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🚀</span>
-                  <span>Upvote us on Peerlist</span>
-                </div>
-                {/* Tooltip arrow */}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"></div>
-              </div>
-            </div>
-          </motion.div>
-        </Link>
       </motion.div>
     </div>
   );

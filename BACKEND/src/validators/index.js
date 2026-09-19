@@ -125,7 +125,7 @@ const createPlaylistValidator = () => {
   return [
     body('name')
       .notEmpty()
-      .withMessage('Name o fPlaylist is required')
+      .withMessage('Name of Playlist is required')
       .isString()
       .withMessage('Name of playlist should be a string'),
     body('description')

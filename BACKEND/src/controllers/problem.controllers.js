@@ -27,6 +27,17 @@ const createProblem = async (req, res) => {
       .status(403)
       .json(new ApiError(403, 'You are not allowed to create a problem'));
   }
+  const isProblemExists = await db.problem.findUnique({
+    where: {
+      title,
+    },
+  });
+
+  if (isProblemExists) {
+    return res
+      .status(400)
+      .json(new ApiError(400, 'Problem with this title already exists'));
+  }
 
   try {
     for (const [language, solutionCode] of Object.entries(refrenceSolution)) {
