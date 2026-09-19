@@ -1,237 +1,220 @@
-# Algonix 🚀
+# Algonix
 
-Algonix is an interactive coding practice platform designed to help developers enhance their programming skills through practical challenges. Master coding problems with hands-on experience and improve your problem-solving abilities with expert-led tutorials across multiple programming languages.
+Algonix is a full-stack coding practice platform. Users can browse coding problems, write and execute solutions, submit code, track solved problems and login activity, and organize problems into playlists. Administrators can create, update, and delete problems.
 
-## ✨ Features
+## Features
 
-- **🎯 Interactive Coding Challenges** - Solve problems ranging from Easy to Hard difficulty levels
-- **📊 Progress Tracking** - Monitor your coding journey with detailed statistics and streaks
-- **💻 Multi-Language Support** - Practice in JavaScript, Python, Java, and more
-- **⚡ Real-time Code Execution** - Test your solutions instantly with our online code editor
-- **📈 Performance Analytics** - Track your success rate, average completion time, and improvement over time
-- **🏆 Achievement System** - Maintain coding streaks and unlock achievements
-- **📚 Problem Categories** - Organized by topics like algorithms, data structures, mathematics, and more
-- **💾 Solution Bookmarking** - Save and revisit your favorite problems
+- React coding workspace with Monaco Editor
+- Problem catalog with Easy, Medium, and Hard difficulty levels
+- JavaScript, Python, and Java code execution through Judge0
+- Code submissions with result, time, memory, and test-case details
+- User registration, login, email verification, refresh tokens, and optional Google OAuth
+- User profiles, solved-problem tracking, streaks, and login activity
+- Public and private playlists for organizing problems
+- Admin-only problem management
+- Responsive UI built with Tailwind CSS and DaisyUI
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-- Modern web browser
-
-### Installation
-
-1. **Clone the repository**
-
-   ```bash
-   git clone https://github.com/vishalraghav321/Algonix
-   cd algonix
-   ```
-
-2. **Backend Setup**
-
-   ```bash
-   cd BACKEND
-   npm install
-   # Set up environment variables
-   cp .env.example .env
-   # Edit .env with your database and API configuration
-
-   # Set up Prisma database
-   npx prisma generate
-   npx prisma db push
-   npx prisma db seed
-
-   # Start the backend server
-   npm start
-   # Backend will run on http://localhost:5000
-   ```
-
-3. **Frontend Setup**
-
-   ```bash
-   cd ../FRONTEND
-   npm install
-   # Start the frontend development server
-   npm run dev
-   # Frontend will run on http://localhost:5173
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:5173`
-
-## 🏗️ Project Structure
-
-```
-algonix/
-├── FRONTEND/
-│   ├── public/
-│   │   ├── images/
-│   │   ├── favicon.ico
-│   │   └── index.html
-│   ├── src/
-│   │   ├── assets/
-│   │   │   ├── images/
-│   │   │   ├── icons/
-│   │   │   └── styles/
-│   │   ├── components/
-│   │   │   ├── common/
-│   │   │   ├── CodeEditor/
-│   │   │   ├── ProblemList/
-│   │   │   ├── UserProfile/
-│   │   │   └── UI/
-│   │   ├── layout/
-|   |   |    └── Layout.jsx
-│   │   ├── pages/
-│   │   │   ├── Profile/
-│   │   │   ├── Problems/
-│   │   │   ├── Profile/
-│   │   │   ├── Auth/
-│   │   │   └── Landing/
-│   │   ├── hooks/
-│   │   ├── utils/
-│   │   └── App.js
-│   |   ├── package.json
-│   └── README.md
-├── BACKEND/
-│   ├── src/
-│   │   ├── models/
-│   │   │   ├── auth.js
-│   │   │   ├── Problem.js
-│   │   │   └── Submissions.js
-│   │   ├── assets
-│   │   ├── controllers/
-│   │   │   ├── authController.js
-│   │   │   ├── problemController.js
-│   │   │   └── userController.js
-│   │   ├── middlewares/
-│   │   │   ├── auth.js
-│   │   │   ├── validation.js
-│   │   ├── routes/
-│   │   │   ├── auth.js
-│   │   │   ├── problems.js
-│   │   │   └── users.js
-│   │   ├── utils/
-│   │   │   ├── database.js
-│   │   │   └── constants.js
-│   │   └── validators/
-│   │       ├── authValidator.js
-│   │       ├── problemValidator.js
-│   │       └── userValidator.js
-│   ├── prisma/
-│   │   ├── schema.prisma
-│   │   ├── migrations/
-│   │   └── seed.js
-│   ├── index.js
-│   ├── package.json
-│   └── .env.example
-├── .gitignore
-├── docker-compose.yml
-└── README.md
-```
-
-## 🎮 How to Use
-
-### For Beginners
-
-1. **Create an Account** - Sign up to track your progress
-2. **Start with Easy Problems** - Begin with fundamental coding challenges
-3. **Use the Code Editor** - Write your solution in the integrated editor
-4. **Test Your Code** - Run test cases to verify your solution
-5. **Submit and Learn** - Submit your solution and review explanations
-
-### For Advanced Users
-
-1. **Filter by Difficulty** - Challenge yourself with Medium and Hard problems
-2. **Track Your Streaks** - Maintain daily coding practice
-3. **Explore Different Languages** - Switch between JavaScript, Python, and Java
-4. **Analyze Performance** - Review your success rate and improvement metrics
-5. **Create Custom Sheets** - Organize problems into personalized study lists
-
-## 📊 User Dashboard Features
-
-- **Progress Overview**: Visual representation of solved problems (1 of 22 completed)
-- **Difficulty Breakdown**: Track Easy, Medium, and Hard problem completion
-- **Statistics Panel**:
-  - Languages practiced
-  - Average completion time
-  - Total submissions
-  - Success rate
-- **Streak Tracking**: Current streak and best streak
-- **Language Proficiency**: JavaScript, Python, Java support
-
-## 🛠️ Technologies Used
+## Stack
 
 ### Frontend
 
-- **React.js** - User interface framework
-- **Tailwind CSS** - Styling and responsive design
-- **Monaco Editor** - Code editing experience
-- **React Router** - Navigation and routing
-- **Axios** - API communication
+- React 19 and React Router
+- Vite
+- Tailwind CSS and DaisyUI
+- Monaco Editor
+- Zustand for client state
+- Axios for API requests
+- React Hook Form and Zod for forms and validation
+- Lucide React, React Icons, Motion, and React Hot Toast
 
 ### Backend
 
-- **Node.js** - Server runtime
-- **Express.js** - Web application framework
-- **Prisma** - Database ORM and query builder
-- **PostgreSQL/MySQL** - Database (configurable via Prisma)
-- **JWT** - Authentication and authorization
-- **bcryptjs** - Password hashing
-- **express-validator** - Input validation
-- **cors** - Cross-origin resource sharing
-- **dotenv** - Environment variable management
+- Node.js with Express 5
+- PostgreSQL with Prisma 6
+- Passport Google OAuth 2.0
+- Express sessions and cookie-based authentication
+- Judge0 for code execution
+- Cloudinary for image uploads
+- Nodemailer and Mailtrap-compatible SMTP for verification email
 
-### Development Tools
+## Project Structure
 
-- **Webpack** - Module bundling
-- **Babel** - JavaScript compilation
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **Jest** - Testing framework
-
-## 🚀 Deployment
-
-### Production Build
-
-```bash
-npm run build
-# or
-yarn build
+```text
+algonix/
+├── BACKEND/
+│   ├── prisma/
+│   │   ├── schema.prisma
+│   │   └── migrations/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── generated/prisma/
+│   │   ├── libs/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   ├── validators/
+│   │   └── index.js
+│   └── package.json
+├── FRONTEND/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── Layout/
+│   │   ├── lib/
+│   │   ├── pages/
+│   │   ├── store/
+│   │   └── App.jsx
+│   └── package.json
+└── readme.md
 ```
 
-### Deploy to Vercel
+## Requirements
+
+- Node.js 18 or newer
+- npm
+- PostgreSQL database
+- Judge0-compatible API credentials for code execution
+
+## Local Setup
+
+Clone the repository and install dependencies in both applications:
 
 ```bash
-npm install -g vercel
-vercel --prod
+git clone https://github.com/vishalraghav321/Algonix.git
+cd Algonix
+
+cd BACKEND
+npm install
+
+cd ../FRONTEND
+npm install
 ```
 
-### Deploy to Netlify
+Create `BACKEND/.env` with the values required by the backend:
 
-1. Connect your GitHub repository to Netlify
-2. Set build command: `npm run build`
-3. Set publish directory: `build`
-4. Deploy automatically on push to main branch
+```env
+NODE_ENV=development
+PORT=3000
+FRONTEND_URL=http://localhost:5173
+BASE_URI=http://localhost:3000
 
-## 📝 API Documentation
+DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/algonix
+SESSION_SECRET=replace-with-a-long-random-value
+JWT_ACCESS_TOKEN_SECRET=replace-with-a-long-random-value
+JWT_REFERSH_TOKEN_SECRET=replace-with-a-long-random-value
+ACCESS_TOKEN_EXPIRY=15m
+REFRESH_TOKEN_EXPIRY=7d
 
-### Authentication Endpoints
+JUDGE0_API_URL=https://judge0-ce.p.rapidapi.com
+RAPIDAPI_KEY=your-rapidapi-key
+RAPIDAPI_HOST=judge0-ce.p.rapidapi.com
 
-- `POST /api/v1/v1/auth/register` - User registration
-- `POST /api/v1/v1/auth/login` - User login
-- `POST /api/v1/auth/logout` - User logout
+# Required for Google login
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+GOOGLE_CALLBACK_URL=http://localhost:3000/api/v1/auth/google/callback
 
-### Problem Endpoints
+# Required for email verification
+MAILTRAP_HOST=your-smtp-host
+MAILTRAP_PORT=2525
+MAILTRAP_USERNAME=your-smtp-username
+MAILTRAP_PASSWORD=your-smtp-password
+MAILTRAP_SENDERMAIL=no-reply@example.com
 
-- `GET /api/v1/problems` - Fetch all problems
-- `GET /api/v1/problems/:id` - Get specific problem
-- `POST /api/v1/problems/:id/submit` - Submit solution
+# Required for avatar uploads
+CLOUDINARY_CLOUD_NAME=your-cloud-name
+CLOUDINARY_API_KEY=your-api-key
+CLOUDINARY_API_SECRET=your-api-secret
+```
 
-### User Endpoints
+Generate the Prisma client and apply the existing migrations:
 
-- `GET /api/v1/user/profile` - Get user profile
-- `PUT /api/v1/user/checkAuth` - checks the authenticated user
+```bash
+cd BACKEND
+npx prisma generate
+npx prisma migrate deploy
+```
 
+Start the backend and frontend in separate terminals:
+
+```bash
+# Terminal 1
+cd BACKEND
+npm run dev
+```
+
+```bash
+# Terminal 2
+cd FRONTEND
+npm run dev
+```
+
+Open `http://localhost:5173` in a browser. The backend listens on `http://localhost:3000` by default.
+
+## Available Scripts
+
+### Backend
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the API with Nodemon |
+| `npm start` | Start the API with Node.js |
+
+### Frontend
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Create a production build |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint |
+
+## API Overview
+
+All API routes are prefixed with `/api/v1`. Protected routes require the authenticated session or access token.
+
+### Authentication: `/auth`
+
+- `POST /register`
+- `POST /login`
+- `GET /logout`
+- `GET /check`
+- `GET /refreshTokens`
+- `GET /verifyMail/:token`
+- `GET /google`
+- `GET /google/callback`
+
+### Problems: `/problems`
+
+- `GET /get-all-problems`
+- `GET /get-problem/:id`
+- `GET /get-solved-problems`
+- `POST /create-problem` (admin)
+- `PUT /update-problem/:id` (admin)
+- `DELETE /delete-problem/:id` (admin)
+
+### Code Execution: `/execute-code`
+
+- `POST /`
+
+### Submissions: `/submission`
+
+- `GET /get-all-submissions`
+- `GET /get-submission/:problemId`
+- `GET /get-submission-count/:problemId`
+
+### Playlists: `/playlist`
+
+- `GET /`
+- `GET /getPlaylistDetails/:playlistId`
+- `POST /create-playlist`
+- `POST /:playlistId/add-problem`
+- `DELETE /deletePlaylist/:playlistId`
+- `DELETE /:playlistId/remove-problem`
+
+## Production Notes
+
+- Configure `FRONTEND_URL`, `BASE_URI`, OAuth callback URLs, cookies, and database credentials for the deployed domains.
+- Set `NODE_ENV=production` so the backend uses secure cookies and the PostgreSQL-backed session store.
+- Build the frontend with `npm run build` and deploy the generated `FRONTEND/dist` directory to a static host.
+- Run `npx prisma migrate deploy` during backend deployment before starting the API.
