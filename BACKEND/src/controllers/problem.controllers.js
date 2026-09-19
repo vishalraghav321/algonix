@@ -27,6 +27,7 @@ const createProblem = async (req, res) => {
       .status(403)
       .json(new ApiError(403, 'You are not allowed to create a problem'));
   }
+  
   const isProblemExists = await db.problem.findUnique({
     where: {
       title,
