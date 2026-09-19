@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import jwt from 'jsonwebtoken';
 
 import { db } from '../libs/db.js';
-import { ApiError } from '../utils/api-error.js';
+import { ApiError, toApiError } from '../utils/api-error.js';
 import crypto from 'crypto';
 import { userRole } from '../generated/prisma/index.js';
 import {
@@ -83,15 +83,8 @@ const register = async (req, res) => {
     );
   } catch (error) {
     console.error(error);
-    return res
-      .status(400)
-      .json(
-        new ApiError(
-          400,
-          'Internall error Occured while registering the user',
-          error,
-        ),
-      );
+    const apiError = toApiError(error, 'Error while registering the user');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 
@@ -130,15 +123,8 @@ const verifyUser = async (req, res) => {
       .json(new ApiResponse(200, user, 'User verified successfully'));
   } catch (error) {
     console.error(error);
-    return res
-      .status(400)
-      .json(
-        new ApiError(
-          400,
-          'Internall error Occured while verifying the user',
-          error,
-        ),
-      );
+    const apiError = toApiError(error, 'Error while verifying the user');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 
@@ -243,11 +229,8 @@ const login = async (req, res) => {
       .json(new ApiResponse(200, loginUser, 'User logged in successfully'));
   } catch (error) {
     console.error(error);
-    return res
-      .status(400)
-      .json(
-        new ApiError(400, 'Internall error Occured while logging in', error),
-      );
+    const apiError = toApiError(error, 'Error while logging in');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 
@@ -299,11 +282,8 @@ const googleLogin = async (req, res) => {
     res.redirect(`${process.env.FRONTEND_URL}/problems`);
   } catch (error) {
     console.error(error);
-    return res
-      .status(400)
-      .json(
-        new ApiError(400, 'Internall error Occured while logging in', error),
-      );
+    const apiError = toApiError(error, 'Error while logging in');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 
@@ -380,7 +360,8 @@ const TokenRefresh = async (req, res) => {
       );
   } catch (error) {
     console.error(error);
-    return res.status(400).json(new ApiError(400, error.message));
+    const apiError = toApiError(error, 'Error while refreshing tokens');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 
@@ -412,7 +393,8 @@ const logout = async (req, res) => {
       .json(new ApiResponse(200, null, 'User logged out successfully'));
   } catch (error) {
     console.error(error);
-    return res.status(400).json(new ApiError(400, error.message));
+    const apiError = toApiError(error, 'Error while logging out');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 
@@ -423,7 +405,8 @@ const check = async (req, res) => {
       .json(new ApiResponse(200, req.user, 'User authenticated successfully'));
   } catch (error) {
     console.error(error);
-    res.status(500).json(new ApiError(400, 'Error checking user'));
+    const apiError = toApiError(error, 'Error checking user');
+    res.status(apiError.statusCode).json(apiError);
   }
 };
 

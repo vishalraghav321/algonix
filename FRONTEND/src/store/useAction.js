@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
+import { getErrorMessage } from "../lib/getErrorMessage.js";
 import toast from "react-hot-toast";
 
 export const useAction = create((set) => ({
@@ -15,7 +16,7 @@ export const useAction = create((set) => ({
       toast.success(response.data.message);
     } catch (error) {
       console.error("Error deleting prroblem: ", error);
-      toast.error("Error in deleting problem");
+      toast.error(getErrorMessage(error, "Error in deleting problem"));
     } finally {
       set({ isDeletingProblem: false });
     }

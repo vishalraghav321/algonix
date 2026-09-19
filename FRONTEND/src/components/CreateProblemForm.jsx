@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { axiosInstance } from "../lib/axios.js";
+import { getErrorMessage } from "../lib/getErrorMessage.js";
 import toast from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -596,9 +597,7 @@ const CreateProblemForm = () => {
       navigation("/");
     } catch (error) {
       console.error("Error while creating problem", error);
-      toast.error(
-        error.response?.data?.message || "Error in creating problem"
-      );
+      toast.error(getErrorMessage(error, "Error in creating problem"));
     } finally {
       setIsLoading(false);
     }

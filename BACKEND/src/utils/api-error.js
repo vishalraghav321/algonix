@@ -14,4 +14,12 @@ class ApiError extends Error {
   }
 }
 
-export { ApiError };
+const toApiError = (error, fallback = 'Internal server error') => {
+  if (error instanceof ApiError) {
+    return error;
+  }
+
+  return new ApiError(500, fallback);
+};
+
+export { ApiError, toApiError };

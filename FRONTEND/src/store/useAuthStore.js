@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
+import { getErrorMessage } from "../lib/getErrorMessage.js";
 import toast from "react-hot-toast";
 
 export const useAuthStore = create((set) => ({
@@ -32,7 +33,7 @@ export const useAuthStore = create((set) => ({
       return response.data;
     } catch (error) {
       console.error("error while signing up: ", error);
-      toast.error(error.response?.data?.message || "Error while signing up");
+      toast.error(getErrorMessage(error, "Error while signing up"));
       throw error;
     } finally {
       set({ isSigninUp: false });
@@ -47,7 +48,7 @@ export const useAuthStore = create((set) => ({
       toast.success(response.data.message);
     } catch (error) {
       console.error("error while loginin user: ", error);
-      toast.error("Error while loginin user");
+      toast.error(getErrorMessage(error, "Error while loginin user"));
     } finally {
       set({ isLoggingIn: false });
     }
@@ -61,7 +62,7 @@ export const useAuthStore = create((set) => ({
       toast.success("User Logout Successfully");
     } catch (error) {
       console.error("Error while loging out user: ", error);
-      toast.error("Error while loging out the user");
+      toast.error(getErrorMessage(error, "Error while loging out the user"));
     }
   },
 

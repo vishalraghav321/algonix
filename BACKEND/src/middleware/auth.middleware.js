@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { db } from '../libs/db.js';
-import { ApiError } from '../utils/api-error.js';
+import { ApiError, toApiError } from '../utils/api-error.js';
 
 export const authMiddleware = async (req, res, next) => {
   try {
@@ -45,9 +45,8 @@ export const authMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.error(error);
-    return res
-      .status(400)
-      .json(new ApiError(400, 'Error while authenticating'));
+    const apiError = toApiError(error, 'Error while authenticating');
+    return res.status(apiError.statusCode).json(apiError);
   }
 };
 

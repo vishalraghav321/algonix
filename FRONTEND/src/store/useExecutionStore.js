@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
+import { getErrorMessage } from "../lib/getErrorMessage.js";
 import toast from "react-hot-toast";
 
 export const useExecutionStore = create((set) => ({
@@ -30,7 +31,7 @@ export const useExecutionStore = create((set) => ({
       toast.success(response.data.message);
     } catch (error) {
       console.error("Error while executing code: ", error);
-      toast.error("Error while executing code");
+      toast.error(getErrorMessage(error, "Error while executing code"));
     } finally {
       set({ isExecuting: false });
     }

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
+import { getErrorMessage } from "../lib/getErrorMessage.js";
 import toast from "react-hot-toast";
 
 export const useProblemStore = create((set) => ({
@@ -16,7 +17,7 @@ export const useProblemStore = create((set) => ({
       set({ problems: response.data.Data });
     } catch (error) {
       console.error("Error while fetching all problems", error);
-      toast.error("Error while fetching all problems");
+      toast.error(getErrorMessage(error, "Error while fetching all problems"));
     } finally {
       set({ isProblemsLoading: false });
     }
@@ -32,7 +33,7 @@ export const useProblemStore = create((set) => ({
       // toast.success(response.data.message);
     } catch (error) {
       console.error("Error getting all problems", error);
-      toast.error("Error in fetching problems");
+      toast.error(getErrorMessage(error, "Error in fetching problems"));
     } finally {
       set({ isProblemLoading: false });
     }
@@ -45,7 +46,7 @@ export const useProblemStore = create((set) => ({
       set({ solvedProblems: response.data.Data });
     } catch (error) {
       console.error("Error getting all solved problems", error);
-      toast.error("Error in fetching solved problems");
+      toast.error(getErrorMessage(error, "Error in fetching solved problems"));
     }
   },
 }));

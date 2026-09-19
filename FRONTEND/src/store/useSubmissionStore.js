@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { axiosInstance } from "../lib/axios.js";
+import { getErrorMessage } from "../lib/getErrorMessage.js";
 import toast from "react-hot-toast";
 
 export const useSubmissionStore = create((set) => ({
@@ -18,7 +19,7 @@ export const useSubmissionStore = create((set) => ({
       toast.success(reposne.data.message);
     } catch (error) {
       console.error("Error fetching all submissions: ", error);
-      toast.error("Error in fecting all submissions");
+      toast.error(getErrorMessage(error, "Error in fecting all submissions"));
     } finally {
       set({ isLoading: false });
     }
@@ -32,7 +33,9 @@ export const useSubmissionStore = create((set) => ({
       set({ submission: resposne.data.Data });
     } catch (error) {
       console.error("Error fecthing submission for problem: ", error);
-      toast.error("Error in fecting submission for problem");
+      toast.error(
+        getErrorMessage(error, "Error in fecting submission for problem")
+      );
     }
   },
 
@@ -44,7 +47,7 @@ export const useSubmissionStore = create((set) => ({
       set({ submissionCount: resposne.data.Data });
     } catch (error) {
       console.error("Error fetching count for problem: ", error);
-      toast.error("Error fetching count for problem");
+      toast.error(getErrorMessage(error, "Error fetching count for problem"));
     }
   },
 }));
