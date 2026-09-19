@@ -10368,10 +10368,10 @@ export namespace Prisma {
 
   export type ProblemWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    title?: string
     AND?: ProblemWhereInput | ProblemWhereInput[]
     OR?: ProblemWhereInput[]
     NOT?: ProblemWhereInput | ProblemWhereInput[]
-    title?: StringFilter<"Problem"> | string
     description?: StringFilter<"Problem"> | string
     difficulty?: EnumDifficultyFilter<"Problem"> | $Enums.Difficulty
     tags?: StringNullableListFilter<"Problem">
@@ -10389,7 +10389,7 @@ export namespace Prisma {
     submission?: SubmissionListRelationFilter
     solvedBy?: ProblemSolvedListRelationFilter
     problemsPlaylists?: ProblemInPlaylistListRelationFilter
-  }, "id">
+  }, "id" | "title">
 
   export type ProblemOrderByWithAggregationInput = {
     id?: SortOrder

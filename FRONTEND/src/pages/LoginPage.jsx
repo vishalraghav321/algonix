@@ -54,13 +54,6 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-3">
-            <p className="text-red-400 text-sm text-center">
-              <strong>Note:</strong> The backend runs on a free Render instance,
-              so it may sleep at times. If login/signup takes longer, lease wait
-              3-5 minutes.
-            </p>
-          </div>
 
           <form
             onSubmit={handleSubmit(onSubmit)}
