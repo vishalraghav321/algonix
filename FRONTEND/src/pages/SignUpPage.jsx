@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Code, Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
 import { z } from "zod";
 import AuthImagePattern from "../components/AuthImagePattern.jsx";
@@ -16,6 +16,9 @@ const SignUpSchema = z.object({
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [registered, setRegistered] = useState(false);
+
+  const navigate = useNavigate();
 
   const { signup, isSigninUp } = useAuthStore();
 
@@ -30,10 +33,42 @@ const SignUpPage = () => {
   const onSubmit = async (data) => {
     try {
       await signup(data);
+      setRegistered(true);
     } catch (error) {
       console.error("Signup failed", error);
     }
   };
+
+  if (registered) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-6 text-white parkinsans-Regular">
+        <div className="w-full max-w-lg bg-zinc-900 p-8 rounded-2xl shadow-lg text-center">
+          <div className="w-14 h-14 mx-auto bg-[#F4FF54]/20 rounded-2xl flex items-center justify-center">
+            <Mail className="w-7 h-7 text-[#F4FF54]" />
+          </div>
+
+          <h1 className="text-3xl font-bold mt-5">Check your email</h1>
+
+          <p className="text-zinc-400 mt-3">
+            Your account has been created successfully.
+          </p>
+
+          <p className="text-zinc-400 mt-2">
+            We've sent you a verification link. Please verify your email before
+            signing in.
+          </p>
+
+          <button
+            type="button"
+            onClick={() => navigate("/login")}
+            className="w-full mt-6 py-2 rounded-lg font-semibold bg-[#F4FF54] text-black hover:bg-[#F4FF54]/90 transition"
+          >
+            Go to Login
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-1 text-white parkinsans-Regular">
@@ -48,14 +83,6 @@ const SignUpPage = () => {
                 Welcome to Algonix
               </h1>
             </div>
-          </div>
-
-          <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-3">
-            <p className="text-red-400 text-sm text-center">
-              <strong>Note: </strong>The backend runs on a free render instance,
-              so it may sleep at times. if login/Singup takes longer, please
-              wait 3-5 minutes.
-            </p>
           </div>
 
           <form

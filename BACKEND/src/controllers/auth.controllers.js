@@ -36,6 +36,8 @@ const register = async (req, res) => {
     const HashedPassword = await bcrypt.hash(password, 10);
     const token = crypto.randomBytes(32).toString('hex');
 
+    const tokenExpires = new Date(Date.now() + 180 * 60 * 1000);
+
     const user = await db.user.create({
       data: {
         name,
@@ -43,6 +45,8 @@ const register = async (req, res) => {
         password: HashedPassword,
         role: userRole.USER,
         verificationToken: token,
+        verificationExpires: tokenExpires,
+        isVerified: false,
       },
     });
 
@@ -57,48 +61,26 @@ const register = async (req, res) => {
 
     const avatarUrl = await uploadRandomAvatar(user.id);
 
-    const accessToken = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
-
     await db.user.update({
       where: {
         id: user.id,
       },
       data: {
-        accessToken,
-        refreshToken,
         image: avatarUrl,
       },
     });
 
-    const AccessCookieOptions = {
-      httpOnly: true,
-      sameSite: isProduction ? 'none' : 'lax',
-      secure: isProduction,
-      maxAge: 1000 * 60 * 15,
-    };
-
-    const RefreshCookieOptions = {
-      httpOnly: true,
-      sameSite: isProduction ? 'none' : 'lax',
-      secure: isProduction,
-      maxAge: 1000 * 60 * 60 * 24 * 7,
-    };
-
-    res.cookie('accessToken', accessToken, AccessCookieOptions);
-    res.cookie('refreshToken', refreshToken, RefreshCookieOptions);
-
-    const registerUser = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      image: user.image,
-      accessToken: user.accessToken,
-    };
-    res
-      .status(201)
-      .json(new ApiResponse(200, registerUser, 'User registered successfully'));
+    res.status(201).json(
+      new ApiResponse(
+        201,
+        {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        },
+        'Registration successful. Please verify your email.',
+      ),
+    );
   } catch (error) {
     console.error(error);
     return res
@@ -123,9 +105,11 @@ const verifyUser = async (req, res) => {
     const user = await db.user.findFirst({
       where: {
         verificationToken: token,
+        verificationExpires: {
+          gt: new Date(),
+        },
       },
     });
-
     if (!user) {
       throw new ApiError(400, 'User not found');
     }
@@ -137,6 +121,7 @@ const verifyUser = async (req, res) => {
       data: {
         isVerified: true,
         verificationToken: null,
+        verificationExpires: null,
       },
     });
 
@@ -401,16 +386,16 @@ const TokenRefresh = async (req, res) => {
 
 const logout = async (req, res) => {
   try {
-    const isProduction = process.env.NODE_ENV === "production";
+    const isProduction = process.env.NODE_ENV === 'production';
 
     const cookieOptions = {
       httpOnly: true,
-      sameSite: isProduction ? "none" : "lax",
+      sameSite: isProduction ? 'none' : 'lax',
       secure: isProduction,
     };
 
-    res.clearCookie("accessToken", cookieOptions);
-    res.clearCookie("refreshToken", cookieOptions);
+    res.clearCookie('accessToken', cookieOptions);
+    res.clearCookie('refreshToken', cookieOptions);
 
     await db.user.update({
       where: {
@@ -424,7 +409,7 @@ const logout = async (req, res) => {
 
     res
       .status(200)
-      .json(new ApiResponse(200, null, "User logged out successfully"));
+      .json(new ApiResponse(200, null, 'User logged out successfully'));
   } catch (error) {
     console.error(error);
     return res.status(400).json(new ApiError(400, error.message));

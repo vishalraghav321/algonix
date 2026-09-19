@@ -5,8 +5,8 @@ export const sendEmail = async (options) => {
   const mailGenerator = new Mailgen({
     theme: 'default',
     product: {
-      name: 'Task Manager',
-      link: 'https://mailgen.js/',
+      name: 'Algonix',
+      link: process.env.FRONTEND_URL,
     },
   });
 
@@ -35,6 +35,8 @@ export const sendEmail = async (options) => {
   try {
     await transporter.sendMail(mailOptions);
   } catch (error) {
+    console.error('Failed to send verification email:', error);
+    throw error;
   }
 };
 
@@ -42,10 +44,9 @@ export const mailVerificationMailGenContent = (username, verficationUrl) => {
   return {
     body: {
       name: username,
-      intro:
-        "Welcome to Task Manager! We're very excited to have you on board.",
+      intro: "Welcome to Algonix! We're very excited to have you on board.",
       action: {
-        instructions: 'To get started with Task Manager, please click here:',
+        instructions: 'To get started with Algonix, please click here:',
         button: {
           color: '#22BC66', // Optional action button color
           text: 'Verify your email',

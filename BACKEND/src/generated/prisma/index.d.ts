@@ -1644,6 +1644,7 @@ export namespace Prisma {
     role: $Enums.userRole | null
     isVerified: boolean | null
     verificationToken: string | null
+    verificationExpires: Date | null
     passwordResetToken: string | null
     passwordResetExpiry: Date | null
     accessToken: string | null
@@ -1664,6 +1665,7 @@ export namespace Prisma {
     role: $Enums.userRole | null
     isVerified: boolean | null
     verificationToken: string | null
+    verificationExpires: Date | null
     passwordResetToken: string | null
     passwordResetExpiry: Date | null
     accessToken: string | null
@@ -1684,6 +1686,7 @@ export namespace Prisma {
     role: number
     isVerified: number
     verificationToken: number
+    verificationExpires: number
     passwordResetToken: number
     passwordResetExpiry: number
     accessToken: number
@@ -1717,6 +1720,7 @@ export namespace Prisma {
     role?: true
     isVerified?: true
     verificationToken?: true
+    verificationExpires?: true
     passwordResetToken?: true
     passwordResetExpiry?: true
     accessToken?: true
@@ -1737,6 +1741,7 @@ export namespace Prisma {
     role?: true
     isVerified?: true
     verificationToken?: true
+    verificationExpires?: true
     passwordResetToken?: true
     passwordResetExpiry?: true
     accessToken?: true
@@ -1757,6 +1762,7 @@ export namespace Prisma {
     role?: true
     isVerified?: true
     verificationToken?: true
+    verificationExpires?: true
     passwordResetToken?: true
     passwordResetExpiry?: true
     accessToken?: true
@@ -1865,6 +1871,7 @@ export namespace Prisma {
     role: $Enums.userRole
     isVerified: boolean
     verificationToken: string | null
+    verificationExpires: Date | null
     passwordResetToken: string | null
     passwordResetExpiry: Date | null
     accessToken: string | null
@@ -1905,6 +1912,7 @@ export namespace Prisma {
     role?: boolean
     isVerified?: boolean
     verificationToken?: boolean
+    verificationExpires?: boolean
     passwordResetToken?: boolean
     passwordResetExpiry?: boolean
     accessToken?: boolean
@@ -1931,6 +1939,7 @@ export namespace Prisma {
     role?: boolean
     isVerified?: boolean
     verificationToken?: boolean
+    verificationExpires?: boolean
     passwordResetToken?: boolean
     passwordResetExpiry?: boolean
     accessToken?: boolean
@@ -1952,6 +1961,7 @@ export namespace Prisma {
     role?: boolean
     isVerified?: boolean
     verificationToken?: boolean
+    verificationExpires?: boolean
     passwordResetToken?: boolean
     passwordResetExpiry?: boolean
     accessToken?: boolean
@@ -1973,6 +1983,7 @@ export namespace Prisma {
     role?: boolean
     isVerified?: boolean
     verificationToken?: boolean
+    verificationExpires?: boolean
     passwordResetToken?: boolean
     passwordResetExpiry?: boolean
     accessToken?: boolean
@@ -1985,7 +1996,7 @@ export namespace Prisma {
     loginMap?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "image" | "password" | "role" | "isVerified" | "verificationToken" | "passwordResetToken" | "passwordResetExpiry" | "accessToken" | "refreshToken" | "lastloginDate" | "streakCount" | "longestCount" | "createdAt" | "updatedAt" | "loginMap", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "image" | "password" | "role" | "isVerified" | "verificationToken" | "verificationExpires" | "passwordResetToken" | "passwordResetExpiry" | "accessToken" | "refreshToken" | "lastloginDate" | "streakCount" | "longestCount" | "createdAt" | "updatedAt" | "loginMap", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     problems?: boolean | User$problemsArgs<ExtArgs>
     submission?: boolean | User$submissionArgs<ExtArgs>
@@ -2013,6 +2024,7 @@ export namespace Prisma {
       role: $Enums.userRole
       isVerified: boolean
       verificationToken: string | null
+      verificationExpires: Date | null
       passwordResetToken: string | null
       passwordResetExpiry: Date | null
       accessToken: string | null
@@ -2458,6 +2470,7 @@ export namespace Prisma {
     readonly role: FieldRef<"User", 'userRole'>
     readonly isVerified: FieldRef<"User", 'Boolean'>
     readonly verificationToken: FieldRef<"User", 'String'>
+    readonly verificationExpires: FieldRef<"User", 'DateTime'>
     readonly passwordResetToken: FieldRef<"User", 'String'>
     readonly passwordResetExpiry: FieldRef<"User", 'DateTime'>
     readonly accessToken: FieldRef<"User", 'String'>
@@ -9917,6 +9930,7 @@ export namespace Prisma {
     role: 'role',
     isVerified: 'isVerified',
     verificationToken: 'verificationToken',
+    verificationExpires: 'verificationExpires',
     passwordResetToken: 'passwordResetToken',
     passwordResetExpiry: 'passwordResetExpiry',
     accessToken: 'accessToken',
@@ -10200,6 +10214,7 @@ export namespace Prisma {
     role?: EnumuserRoleFilter<"User"> | $Enums.userRole
     isVerified?: BoolFilter<"User"> | boolean
     verificationToken?: StringNullableFilter<"User"> | string | null
+    verificationExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     passwordResetToken?: StringNullableFilter<"User"> | string | null
     passwordResetExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
     accessToken?: StringNullableFilter<"User"> | string | null
@@ -10225,6 +10240,7 @@ export namespace Prisma {
     role?: SortOrder
     isVerified?: SortOrder
     verificationToken?: SortOrderInput | SortOrder
+    verificationExpires?: SortOrderInput | SortOrder
     passwordResetToken?: SortOrderInput | SortOrder
     passwordResetExpiry?: SortOrderInput | SortOrder
     accessToken?: SortOrderInput | SortOrder
@@ -10253,6 +10269,7 @@ export namespace Prisma {
     role?: EnumuserRoleFilter<"User"> | $Enums.userRole
     isVerified?: BoolFilter<"User"> | boolean
     verificationToken?: StringNullableFilter<"User"> | string | null
+    verificationExpires?: DateTimeNullableFilter<"User"> | Date | string | null
     passwordResetToken?: StringNullableFilter<"User"> | string | null
     passwordResetExpiry?: DateTimeNullableFilter<"User"> | Date | string | null
     accessToken?: StringNullableFilter<"User"> | string | null
@@ -10278,6 +10295,7 @@ export namespace Prisma {
     role?: SortOrder
     isVerified?: SortOrder
     verificationToken?: SortOrderInput | SortOrder
+    verificationExpires?: SortOrderInput | SortOrder
     passwordResetToken?: SortOrderInput | SortOrder
     passwordResetExpiry?: SortOrderInput | SortOrder
     accessToken?: SortOrderInput | SortOrder
@@ -10307,6 +10325,7 @@ export namespace Prisma {
     role?: EnumuserRoleWithAggregatesFilter<"User"> | $Enums.userRole
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
     verificationToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    verificationExpires?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     passwordResetToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     passwordResetExpiry?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     accessToken?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -10832,6 +10851,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -10857,6 +10877,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -10882,6 +10903,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10907,6 +10929,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10932,6 +10955,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -10953,6 +10977,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10974,6 +10999,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11688,6 +11714,7 @@ export namespace Prisma {
     role?: SortOrder
     isVerified?: SortOrder
     verificationToken?: SortOrder
+    verificationExpires?: SortOrder
     passwordResetToken?: SortOrder
     passwordResetExpiry?: SortOrder
     accessToken?: SortOrder
@@ -11714,6 +11741,7 @@ export namespace Prisma {
     role?: SortOrder
     isVerified?: SortOrder
     verificationToken?: SortOrder
+    verificationExpires?: SortOrder
     passwordResetToken?: SortOrder
     passwordResetExpiry?: SortOrder
     accessToken?: SortOrder
@@ -11734,6 +11762,7 @@ export namespace Prisma {
     role?: SortOrder
     isVerified?: SortOrder
     verificationToken?: SortOrder
+    verificationExpires?: SortOrder
     passwordResetToken?: SortOrder
     passwordResetExpiry?: SortOrder
     accessToken?: SortOrder
@@ -13326,6 +13355,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -13350,6 +13380,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -13482,6 +13513,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13506,6 +13538,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13589,6 +13622,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -13613,6 +13647,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -13738,6 +13773,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13762,6 +13798,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13956,6 +13993,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -13980,6 +14018,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -14065,6 +14104,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14089,6 +14129,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14188,6 +14229,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -14212,6 +14254,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     isVerified?: boolean
     verificationToken?: string | null
+    verificationExpires?: Date | string | null
     passwordResetToken?: string | null
     passwordResetExpiry?: Date | string | null
     accessToken?: string | null
@@ -14268,6 +14311,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14292,6 +14336,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     verificationToken?: NullableStringFieldUpdateOperationsInput | string | null
+    verificationExpires?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     passwordResetToken?: NullableStringFieldUpdateOperationsInput | string | null
     passwordResetExpiry?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
