@@ -264,16 +264,14 @@ const googleLogin = async (req, res) => {
       httpOnly: true,
       sameSite: isProduction ? 'none' : 'lax',
       secure: isProduction,
-      maxAge: 1000 * 60 * 15, // 15 minutes
-      domain: '.algonix.in',
+      maxAge: 1000 * 60 * 15,
     };
 
     const RefreshCookieOptions = {
       httpOnly: true,
       sameSite: isProduction ? 'none' : 'lax',
       secure: isProduction,
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
-      domain: '.algonix.in',
+      maxAge: 1000 * 60 * 60 * 24 * 7,
     };
 
     res.cookie('accessToken', accessToken, AccessCookieOptions);

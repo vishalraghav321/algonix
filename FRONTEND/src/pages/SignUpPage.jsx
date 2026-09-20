@@ -186,7 +186,7 @@ const SignUpPage = () => {
               type="button"
               onClick={() =>
                 (window.location.href =
-                  "https://algonix-47he.onrender.com/api/v1/auth/google")
+                  `${import.meta.env.VITE_API_URL}/auth/google`)
               }
               className="w-full py-2 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-600/80 transition flex items-center justify-center gap-2 cursor-pointer"
             >
