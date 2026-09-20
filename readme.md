@@ -14,6 +14,8 @@ Algonix is a full-stack coding practice platform. Users can browse coding proble
 - Admin-only problem management
 - Responsive UI built with Tailwind CSS and DaisyUI
 
+Password-based accounts must verify their email address before they can log in. Authentication tokens are issued as HTTP-only cookies, and the frontend refreshes tokens periodically while the user is signed in.
+
 ## Stack
 
 ### Frontend
@@ -74,6 +76,8 @@ algonix/
 - npm
 - PostgreSQL database
 - Judge0-compatible API credentials for code execution
+
+Google OAuth, SMTP email, and Cloudinary credentials are optional for local development, but are required if those integrations are enabled.
 
 ## Local Setup
 
@@ -175,14 +179,14 @@ All API routes are prefixed with `/api/v1`. Protected routes require the authent
 
 ### Authentication: `/auth`
 
-- `POST /register`
-- `POST /login`
-- `GET /logout`
-- `GET /check`
-- `GET /refreshTokens`
-- `GET /verifyMail/:token`
-- `GET /google`
-- `GET /google/callback`
+- `POST /register` - Create an account and send a verification email
+- `POST /login` - Log in a verified account and set access/refresh cookies
+- `GET /logout` - Clear authentication cookies
+- `GET /check` - Return the current authenticated user
+- `GET /refreshTokens` - Rotate the access and refresh tokens
+- `GET /verifyMail/:token` - Verify an account using its email token
+- `GET /google` - Start Google OAuth
+- `GET /google/callback` - Complete Google OAuth and redirect to the frontend
 
 ### Problems: `/problems`
 
@@ -211,6 +215,20 @@ All API routes are prefixed with `/api/v1`. Protected routes require the authent
 - `POST /:playlistId/add-problem`
 - `DELETE /deletePlaylist/:playlistId`
 - `DELETE /:playlistId/remove-problem`
+
+## Frontend Routes
+
+- `/` - Home page
+- `/login` - Login
+- `/signup` - Registration
+- `/problems` - Authenticated problem list
+- `/problem/:id` - Authenticated problem workspace
+- `/playlists` - Authenticated playlists
+- `/Playlist/:id` - Playlist details
+- `/profile` - User profile
+- `/add-problem` - Admin-only problem creation
+- `/FAQ` - Frequently asked questions
+- `/Pricing` - Pricing page
 
 ## Production Notes
 
