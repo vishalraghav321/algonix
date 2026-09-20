@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 
 const faqs = [
   {

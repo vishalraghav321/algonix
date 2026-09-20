@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import "../index.css";
 import { toast } from "react-hot-toast";
 

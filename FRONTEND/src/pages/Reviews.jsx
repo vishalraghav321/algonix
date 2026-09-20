@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import {
   StarIcon,
   Twitter,
