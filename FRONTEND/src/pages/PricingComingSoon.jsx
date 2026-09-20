@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { HomeIcon } from "lucide-react";
 
 const handleClick = () => {
-  if (true) toast.success("Notified Successfully");
+  toast.success("Notified Successfully");
 };
 const PricingComingSoon = () => {
   return (

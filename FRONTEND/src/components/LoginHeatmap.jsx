@@ -6,7 +6,6 @@ import {
   subDays,
   getDay,
   isSameMonth,
-  getDaysInMonth,
 } from "date-fns";
 import clsx from "clsx";
 
@@ -34,7 +33,7 @@ const LoginHeatmap = ({ loginMap = {} }) => {
     .map(() => Array(7).fill(null));
 
   // Fill the grid with actual days
-  allDays.forEach((day, index) => {
+  allDays.forEach((day) => {
     const daysSinceStart = Math.floor(
       (day - startDate) / (1000 * 60 * 60 * 24)
     );

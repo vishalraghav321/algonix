@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "../index.css";
 
 const Pricing = () => {
-  const [isAnnual, setIsAnnual] = useState(false);
-
-  const toggleBilling = (type) => {
-    setIsAnnual(type === "annual");
-  };
-
   const prices = {
     free: "$0",
     pro: "$39",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useFetcher } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Editor from "@monaco-editor/react";
 import {
   Play,
@@ -35,7 +35,6 @@ const ProblemPage = () => {
     isLoading: isSubmissionsLoading,
     getSubmissionForProblem,
     getSubmissionCountForProblem,
-    submissionCount,
   } = useSubmissionStore();
   const [code, setCode] = useState("");
   const [activeTab, setActiveTab] = useState("description");
@@ -49,7 +48,7 @@ const ProblemPage = () => {
   const [isAddToPlaylistModalOpen, setIsAddToPlaylistModalOpen] =
     useState(false);
 
-  const { executeCode, submission, isExecuting, clearSubmission } =
+  const { executeCode, submission, isExecuting } =
     useExecutionStore();
 
   useEffect(() => {
@@ -258,7 +257,7 @@ const ProblemPage = () => {
         <div className="bg-zinc-800 rounded-xl p-6 shadow-lg">
           <div className="relative flex justify-between mb-4 border-b border-zinc-700 pb-2 w-full">
             {["description", "submissions", "discussion", "hints"].map(
-              (tab, index) => {
+              (tab) => {
                 const Icon =
                   tab === "description"
                     ? FileText
@@ -307,7 +306,7 @@ const ProblemPage = () => {
                 {problem.examples && (
                   <div className="mt-4">
                     <h3 className="text-lg frot-semibold mb-2">Examples:</h3>
-                    {Object.entries(problem.examples).map(([lang, ex], idx) => (
+                    {Object.values(problem.examples).map((ex, idx) => (
                       <div
                         key={idx}
                         className="bg-zinc-700 p-4 rounded-lg mb-4"

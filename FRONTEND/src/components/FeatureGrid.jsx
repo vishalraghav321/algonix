@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import FeatureImg1 from "../assets/FeatureImg1.webp";
 import FeatureImg2 from "../assets/FeatureImg2.webp";
 import FeatureImg3 from "../assets/FeatureImg3.webp";

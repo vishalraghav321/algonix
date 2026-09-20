@@ -8,13 +8,12 @@ import {
   LogOut,
   DockIcon,
 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../index.css";
 import { useAuthStore } from "../store/useAuthStore.js";
 import LogoutButton from "./LogoutButton.jsx";
 import algonixLogo from "../assets/algonixLogo.png";
-import "../index.css";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,12 +28,6 @@ export default function Navbar() {
   };
 
   const toggleMenu = () => setIsOpen(!isOpen);
-
-  const location = useLocation();
-  const isFAQPage = location.pathname === "/FAQ";
-  const isPricingPage = location.pathname === "/Pricing";
-  const isProblemsPage = location.pathname === "/problems";
-  const isPlaylistsPage = location.pathname === "/playlists";
 
   return (
     <div className="w-full px-2 md:px-36">

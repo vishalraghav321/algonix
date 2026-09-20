@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { Loader } from "lucide-react";
 
 import Home from "../pages/Home.jsx";
 import FAQ from "../pages/FAQ.jsx";
@@ -20,7 +19,7 @@ import AdminRoute from "../components/AdminRoute.jsx";
 import { useAuthStore } from "../store/useAuthStore.js";
 
 const Layout = () => {
-  const { authUser, checkAuth, isCheckingAuth, refreshToken } = useAuthStore();
+  const { authUser, checkAuth, refreshToken } = useAuthStore();
   const [authError, setAuthError] = useState(false);
 
   useEffect(() => {
@@ -42,16 +41,6 @@ const Layout = () => {
     return () => clearInterval(interval);
   }, [checkAuth, refreshToken]);
 
-  // Still checking
-  // if (isCheckingAuth && !authUser && !authError) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <Loader className="size-10 animate-spin" />
-  //     </div>
-  //   );
-  // }
-
-  //  if Backend unreachable
   if (authError) {
     return (
       <div className="flex flex-col items-center justify-center h-screen text-center px-4">

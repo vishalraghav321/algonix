@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../index.css";
-import { motion } from "motion/react";
 import { toast } from "react-hot-toast";
 
 const CommunityCard = () => {

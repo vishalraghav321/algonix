@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MapPin, School, Github, Linkedin, Quote, Tag } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const UserDetailsCard = ({ user }) => {
+const UserDetailsCard = () => {
   const [userDetails, setUserDetails] = useState(() => {
     const saved = localStorage.getItem("userDetails");
     return saved ? JSON.parse(saved) : null;

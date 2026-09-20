@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
 import { Code, Eye, EyeOff, Loader2, Lock, Mail } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import google from "./assets/google.svg";
 
 import { z } from "zod";
@@ -15,7 +14,6 @@ const LoginSchema = z.object({
 });
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const { isLoggingIn, login } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
 

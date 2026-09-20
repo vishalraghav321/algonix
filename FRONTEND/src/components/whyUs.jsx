@@ -1,6 +1,6 @@
 import React, { useRef, memo } from "react";
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import CodingImg1 from "../assets/CodingImg1.webp";
 import CodingImg2 from "../assets/CodingImg2.webp";
 import CodingImg3 from "../assets/CodingImg3.webp";

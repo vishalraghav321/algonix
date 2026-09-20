@@ -25,7 +25,7 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const Profile = ({ user }) => {
+const Profile = () => {
   const { authUser, checkAuth } = useAuthStore();
   const {
     solvedProblems,
@@ -35,7 +35,7 @@ const Profile = ({ user }) => {
     isProblemsLoading,
   } = useProblemStore();
 
-  const { isLoading, submissions, getAllSubmissions } = useSubmissionStore();
+  const { submissions, getAllSubmissions } = useSubmissionStore();
 
   useEffect(() => {
     checkAuth();

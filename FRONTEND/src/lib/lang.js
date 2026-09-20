@@ -1,5 +1,3 @@
-import { get } from "react-hook-form";
-
 function getLanguageName(LanguageId) {
   const LANGUAGE_NAMES = {
     74: "TypeScript",

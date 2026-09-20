@@ -11,7 +11,7 @@ const SubmissionList = ({ submissions, isLoading }) => {
   const safeParse = (data) => {
     try {
       return JSON.parse(data);
-    } catch (error) {
+    } catch {
       console.error("Error Parsing Data: ", data);
       return [];
     }

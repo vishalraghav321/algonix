@@ -1,6 +1,5 @@
 import React from "react";
 import "../../src/index.css";
-import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import MagicSVG from "../assets/magic.svg";
