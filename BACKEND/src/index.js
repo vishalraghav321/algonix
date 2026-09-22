@@ -58,7 +58,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('/', (req, res) => {
-  res.send('Hi, Welcome to LeapCode 🔥');
+  res.send('Hi, Welcome to Algonix 🔥');
 });
 
 app.use('/api/v1/auth', userAuthRoutes);

@@ -118,9 +118,7 @@ const verifyUser = async (req, res) => {
       },
     });
 
-    res
-      .status(200)
-      .json(new ApiResponse(200, user, 'User verified successfully'));
+    return res.redirect(`${process.env.FRONTEND_URL}/`);
   } catch (error) {
     console.error(error);
     const apiError = toApiError(error, 'Error while verifying the user');
